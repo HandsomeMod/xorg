@@ -2,6 +2,8 @@
 Xorg For HandsomeMod GNU/Linux
 ------------------------------
 
+## Not Actively Developing Because Shortage of People( Only Me :( )
+
 TODO List
 
 * XWayland Support.
