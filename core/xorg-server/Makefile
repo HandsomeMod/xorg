@@ -34,7 +34,7 @@ define Package/xorg-server
 	+xcb-util-image +xcb-util-renderutil +xcb-util-keysyms +acpid \
 	+libudev +kbd +hicolor-icon-theme +libbsd +libxres +libfs \
 	+libxcomposite +xcb-util-cursor +iceauth +luit +sessreg +xcursorgen \
-	+libxaw +libxpm +libxi +libnettle +dbus
+	+libxaw +libxpm +libxi +libnettle +libxtst
   TITLE:=X.Org X servers
   URL:=http://xorg.freedesktop.org/
 endef
@@ -60,9 +60,6 @@ CONFIGURE_ARGS += \
   --without-systemd-daemon \
   --enable-composite \
   --enable-config-udev \
-  --enable-config-dbus \
-  --enable-config-udev-kms \
-  --enable-libdrm \
   --enable-dri \
   --enable-dri2 \
   --enable-dri3 \
@@ -110,6 +107,9 @@ define Package/xorg-server/install
 	$(CP) \
 	  $(PKG_INSTALL_DIR)/usr/lib/xorg/protocol.txt \
 	  $(1)/usr/lib/xorg/
+
+	$(INSTALL_DATA) ./files/20-modules.conf \
+	  $(1)/etc/X11/xorg.conf.d/
 
 	$(CP) \
 	  $(PKG_INSTALL_DIR)/usr/lib/xorg/modules/drivers/*.so* \
